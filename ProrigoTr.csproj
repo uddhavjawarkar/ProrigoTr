@@ -5,7 +5,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <StartupObject>ProrigoTr.ques19</StartupObject>
+    <StartupObject>ProrigoTr.Prime_Nos</StartupObject>
   </PropertyGroup>
 
 </Project>

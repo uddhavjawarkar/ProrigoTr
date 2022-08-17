@@ -276,6 +276,37 @@ namespace ProrigoTr
             }
         }
     }
+    class ques14:IComparable<ques14>
+    {
+        //14.	WAP to create a  Dictionary  using Custom class as key and any other object as value
+        int Id;
+        string Name;
+
+        public ques14(int id, string name)
+        {
+            Id = id;
+            Name = name;
+        }
+
+        public int CompareTo(ques14 other)
+        {
+            return Id.CompareTo(other.Id); //for ascending
+        }
+        static void Main(string[] args)
+        {
+            Dictionary<ques14, long> ok = new Dictionary<ques14, long>();
+            ok.Add(new ques14(101, "Uddhav"), 7775807645);
+            ok.Add(new ques14(102, "Vishal"), 9767207200);
+            ok.Add(new ques14(103, "Rajesh"), 9689331949);
+            ok.Add(new ques14(104, "Mukesh"), 9604910598);
+            ok.Add(new ques14(105, "Pravin"), 9860258100);
+
+            foreach(KeyValuePair<ques14,long> x in ok)
+            {
+                Console.WriteLine($"{x.Key.Id} {x.Key.Name}  {x.Value}");
+            }
+        }
+    }
     class ques15
     {
         //15.	WAP to create a Queue to add 5 objects and also remove first two and iterate over it.
@@ -322,6 +353,62 @@ namespace ProrigoTr
             Console.WriteLine("After POP, Peek Element is: " + stk.Peek());
         }
     }
+    /*class Emp
+    {
+        int id;
+        string ename;
+        string Dept ;
+
+        public Emp(int id, string ename, string dept)
+        {
+            this.Id = id;
+            this.Ename = ename;
+            Dept1 = dept;
+        }
+
+        public int Id { get => id; set => id = value; }
+        public string Ename { get => ename; set => ename = value; }
+        public string Dept1 { get => Dept; set => Dept = value; }
+    }
+    class Demo
+    {
+        static void Main(string[] args)
+        {
+            LinkedList<Emp> ll=new LinkedList<Emp>();
+            ll.AddLast(new Emp(1, "AA", new Dept("IT")));
+            ll.AddLast(new Emp(2, "BB", new Dept("Sales")));
+            ll.AddLast(new Emp(3, "CC", new Dept("Testing")));
+            ll.AddLast(new Emp(4, "DD", new Dept("IT")));
+            ll.AddLast(new Emp(5, "EE", new Dept("Sales")));
+            ll.AddLast(new Emp(10, "FF", new Dept("Testing")));
+            ll.AddLast(new Emp(11, "GG", new Dept("IT")));
+            ll.AddLast(new Emp(15, "HH", new Dept("Sales")));
+
+            string dname = "";
+            foreach(Emp e in ll)
+            {
+                if(e.Id==10)
+                { dname = e.D.Dname;
+                    break;
+
+                }
+            }
+            foreach(Emp ee in ll)
+                Console.WriteLine(ee);
+
+            Console.WriteLine("**********************");
+            for(int i=0;i<ll.Count;i++)
+            {
+                Emp ob=ll.ElementAt(i);
+                if(ob.D.Dname==dname)
+                {
+                    ll.Remove(ob);
+                }
+            }
+            for(int i =0;i<ll.Count;i++)
+                Console.WriteLine(ll.ElementAt(i));
+        }
+    }*/
     class ques19
     {
         //19.	WAP to iterate through all elements in a HashSet and print the elements. Observe the order of elements.
@@ -338,6 +425,70 @@ namespace ProrigoTr
             {
                 Console.WriteLine(Tractors);
             }
+        }
+    }
+    public class Order:IComparable<Order>
+    {
+        int orderid;
+        string itemname;
+        string city;
+        string status;
+
+        public Order(int orderid, string itemname, string city, string status)
+        {
+            this.Orderid = orderid;
+            this.Itemname = itemname;
+            this.City = city;
+            this.Status = status;
+        }
+
+        public int Orderid { get => orderid; set => orderid = value; }
+        public string Itemname { get => itemname; set => itemname = value; }
+        public string City { get => city; set => city = value; }
+        public string Status { get => status; set => status = value; }
+
+        public int CompareTo(Order o2)
+        {
+           return o2.orderid.CompareTo(this.orderid);
+        }
+
+        /* public int CompareTo(Order? other)
+         {
+             throw new NotImplementedException();
+         }*/
+    }
+    class ques20
+    {
+        static void Main(string[] args)
+        {
+            List<Order> orderlist = new List<Order>();
+            orderlist.Add(new Order(101, "Laptop", "Pune", "Delivered"));
+            orderlist.Add(new Order(102, "MusicSysytem", "Pune", "Pending"));
+            orderlist.Add(new Order(103, "Mobile", "Mumbai", "Pending"));
+            orderlist.Add(new Order(104, "Laptop", "Nashik", "Delivered"));
+            orderlist.Add(new Order(105, "TV", "Nashik", "Pending"));
+            orderlist.Add(new Order(106, "Mobile", "Pune", "Pending"));
+
+            //key-Cityname Value-count of pending order
+
+            Dictionary<string, int> d1 = new Dictionary<string, int>();
+            //Pune=1,Mumbai=1,Nashik=1
+
+            foreach (Order or in orderlist)
+            {
+                if(d1.ContainsKey(or.City))
+                {
+                    int oldval= d1[or.City];
+                    d1[or.City] = oldval + 1;
+
+                }
+                else
+                {
+                    d1.Add(or.City,1);
+                }
+            }
+            foreach(KeyValuePair<string,int> kv in d1)
+                Console.WriteLine(kv.Key+" "+kv.Value);
         }
     }
 }
